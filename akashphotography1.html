@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EpiClick Photography — Editorial & Wedding Storytelling</title>
+    
+    <!-- Google Fonts: Editorial Serif + Clean Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --bg-cream: #FAF8F5;
+            --text-dark: #0F0F12;
+            --text-body: #33302E;
+            --text-muted: #66615C;
+            --accent-gold: #B88E3E;
+            --border-soft: rgba(15, 15, 18, 0.12);
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-body);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* --- AMBIENT EDITORIAL BACKGROUND --- */
+        .ambient-background {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+            background: #FAF8F5;
+        }
+
+        .warm-glow-1 {
+            position: absolute;
+            top: -10%;
+            right: -5%;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(238, 222, 200, 0.5) 0%, rgba(250, 248, 245, 0) 70%);
+            filter: blur(90px);
+        }
+
+        .warm-glow-2 {
+            position: absolute;
+            bottom: 10%;
+            left: -10%;
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(230, 212, 190, 0.4) 0%, rgba(250, 248, 245, 0) 70%);
+            filter: blur(100px);
+        }
+
+        /* Organic Grain Overlay */
+        .grain-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(#0f0f12 0.6px, transparent 0.6px);
+            background-size: 20px 20px;
+            opacity: 0.04;
+        }
+
+        /* --- HUGE HERO SIDE PHOTOS --- */
+        .huge-photo-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-soft);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+        }
+
+        .huge-photo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.09);
+        }
+
+        .huge-hero-image {
+            width: 100%;
+            height: 580px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .huge-photo-card:hover .huge-hero-image {
+            transform: scale(1.025);
+        }
+
+        /* --- CAROUSEL SLIDER (SMOOTH LOOP FIX) --- */
+        .editorial-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-soft);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .editorial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+            border-color: rgba(184, 142, 62, 0.5);
+        }
+
+        .slider-image-container {
+            width: 100%;
+            height: 420px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .editorial-card:hover .slider-image-container {
+            transform: scale(1.03);
+        }
+
+        .slider-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            animation: step-slide-single 18s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        }
+
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        .slider-card {
+            width: 360px;
+            flex-shrink: 0;
+        }
+
+        /* 6 unique steps: (360px + 32px gap = 392px per step) */
+        @keyframes step-slide-single {
+            0%, 12%       { transform: translateX(0px); }
+            16.6%, 28.6%  { transform: translateX(-392px); }
+            33.3%, 45.3%  { transform: translateX(-784px); }
+            50%, 62%      { transform: translateX(-1176px); }
+            66.6%, 78.6%  { transform: translateX(-1568px); }
+            83.3%, 95.3%  { transform: translateX(-1960px); }
+            100%          { transform: translateX(-2352px); }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#B88E3E] selection:text-white">
+
+    <!-- AMBIENT EDITORIAL BACKGROUND -->
+    <div class="ambient-background">
+        <div class="warm-glow-1"></div>
+        <div class="warm-glow-2"></div>
+        <div class="grain-overlay"></div>
+    </div>
+
+    <!-- HEADER NAVIGATION -->
+    <header class="fixed top-0 w-full z-50 bg-[#FAF8F5]/95 backdrop-blur-md border-b border-[#0F0F12]/10">
+        <div class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center text-xs tracking-[0.2em] uppercase font-semibold">
+            <a href="#home" class="text-stone-900 font-bold text-sm tracking-[0.25em] flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-[#B88E3E]"></span>
+                <span>EPI CLICK</span>
+            </a>
+            <nav class="hidden md:flex space-x-12 text-stone-700">
+                <a href="#portfolio" class="hover:text-black transition-colors">PORTFOLIO</a>
+                <a href="#about" class="hover:text-black transition-colors">PHILOSOPHY</a>
+                <a href="#services" class="hover:text-black transition-colors">SERVICES</a>
+                <a href="#contact" class="hover:text-black transition-colors">CONTACT</a>
+            </nav>
+            <span class="text-[11px] text-stone-600 font-semibold hidden lg:inline-block tracking-widest border border-stone-300 px-3 py-1 rounded-sm">
+                INDIA &bull; EDITORIAL
+            </span>
+        </div>
+    </header>
+
+    <!-- HERO SECTION WITH HUGE SIDE PHOTOS -->
+    <section id="home" class="relative z-10 min-h-screen max-w-7xl mx-auto px-6 pt-36 pb-20 flex flex-col justify-center">
+        
+        <!-- Header Badge & Title -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-[#B88E3E] border border-[#B88E3E]/40 px-5 py-2 rounded-full bg-[#B88E3E]/10 inline-block mb-6">
+                WEDDING &amp; EDITORIAL PHOTOGRAPHY
+            </span>
+
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-medium text-stone-900 tracking-tight leading-tight mb-6 serif">
+                Documenting honest human connection <br>
+                <span class="italic text-stone-600 font-normal">with warmth &amp; timeless elegance.</span>
+            </h1>
+
+            <p class="text-xs sm:text-sm font-semibold text-stone-600 tracking-[0.2em] max-w-lg mx-auto uppercase leading-relaxed">
+                Preserving subtle emotions, intimate moments, and genuine stories across India.
+            </p>
+        </div>
+
+        <!-- HUGE EDITORIAL SIDE-BY-SIDE PHOTOS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-4">
+            
+            <!-- Huge Left Photo -->
+            <div class="huge-photo-card p-3.5 rounded-sm overflow-hidden">
+                <div class="huge-hero-image rounded-sm overflow-hidden" style="background-image: url('0K1A2690.jpg');"></div>
+                <div class="pt-5 pb-2 px-2 flex justify-between items-center">
+                    <div>
+                        <p class="text-xs font-bold tracking-[0.2em] text-stone-900 uppercase">THE SACRED RITUAL</p>
+                        <p class="text-xs font-medium text-stone-500 mt-0.5">Heritage &amp; Intimate Vows</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Huge Right Photo -->
+            <div class="huge-photo-card p-3.5 rounded-sm overflow-hidden md:mt-12">
+                <div class="huge-hero-image rounded-sm overflow-hidden" style="background-image: url('0N9A2311-2.jpg');"></div>
+                <div class="pt-5 pb-2 px-2 flex justify-between items-center">
+                    <div>
+                        <p class="text-xs font-bold tracking-[0.2em] text-stone-900 uppercase">EDITORIAL PORTRAIT</p>
+                        <p class="text-xs font-medium text-stone-500 mt-0.5">Natural Light &amp; Motion</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-16 text-center">
+            <a href="#portfolio" class="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-stone-900 border-b-2 border-[#B88E3E] pb-1.5 hover:text-[#B88E3E] transition-all">
+                <span>EXPLORE CURATED ARCHIVE</span>
+                <span>&darr;</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- SINGLE GALLERY ARCHIVE CAROUSEL SECTION -->
+    <section id="portfolio" class="relative z-10 max-w-7xl mx-auto px-8 py-32 border-t border-stone-300">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-14">
+            <div>
+                <p class="text-xs font-bold uppercase tracking-[0.3em] text-[#B88E3E] mb-2">GALLERY ARCHIVE</p>
+                <h2 class="text-4xl md:text-5xl font-medium text-stone-900 italic serif">Curated Stories</h2>
+            </div>
+            <p class="text-xs font-semibold text-stone-500 tracking-widest uppercase mt-4 md:mt-0">
+                AUTOMATIC CAROUSEL &bull; [1s PAUSE PER PHOTO]
+            </p>
+        </div>
+
+        <!-- CAROUSEL SLIDER -->
+        <div class="slider-container py-4">
+            <div class="slider-track">
+                <!-- Card 1 -->
+                <div class="editorial-card p-3.5 slider-card rounded-sm">
+                    <div class="slider-image-container rounded-sm overflow-hidden" style="background-image: url('0K1A2690.jpg');"></div>
+                    <div class="pt-4 pb-1 px-1 flex justify-between items-center">
+                        <span class="text-xs font-bold text-stone-900 tracking-wider uppercase">SACRED MOMENTS</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="editorial-card p-3.5 slider-card rounded-sm">
+                    <div class="slider-image-container rounded-sm overflow-hidden" style="background-image: url('0N9A2311-2.jpg');"></div>
+                    <div class="pt-4 pb-1 px-1 flex justify-between items-center">
+                        <span class="text-xs font-bold text-stone-900 tracking-wider uppercase">EDITORIAL PORTRAIT</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="editorial-card p-3.5 slider-card rounded-sm">
+                    <div class="slider-image-container rounded-sm overflow-hidden" style="background-image: url('0K1A0215.jpg');"></div>
+                    <div class="pt-4 pb-1 px-1 flex justify-between items-center">
+                        <span class="text-xs font-bold text-stone-900 tracking-wider uppercase">MONOCHROME DETAIL</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="editorial-card p-3.5 slider-card rounded-sm">
+                    <div class="slider-image-container rounded-sm overflow-hidden" style="background-image: url('0K1A0348.jpg');"></div>
+                    <div class="pt-4 pb-1 px-1 flex justify-between items-center">
+                        <span class="text-xs font-bold text-stone-900 tracking-wider uppercase">UNSCRIPTED EMOTION</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="editorial-card p-3.5 slider-card rounded-sm">
+                    <div class="slider-image-container rounded-sm overflow-hidden" style="background-image: url('0K1A0261.jpg');"></div>
+                    <div class="pt-4 pb-1 px-1 flex justify-between items-center">
+                        <span class="text-xs font-bold text-stone-900 tracking-wider uppercase">FINE DETAILS</span>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="editorial-card p-3.5 slider-card rounded-sm">
+                    <div class="slider-image-container rounded-sm overflow-hidden" style="background-image: url('0K1A0308.jpg');"></div>
+                    <div class="pt-4 pb-1 px-1 flex justify-between items-center">
+                        <span class="text-xs font-bold text-stone-900 tracking-wider uppercase">CINEMATIC FRAME</span>
+                    </div>
+                </div>
+
+                <!-- Seamless Loop Duplicates (All 6 Duplicated) -->
+                <div class="editorial-card p-3.5 slider-card rounded-sm">
+                    <div class="slider-image-container rounded-sm overflow-hidden" style="background-image: url('0K1A2690.jpg');"></div>
+                    <div class="pt-4 pb-1 px-1 flex justify-between items-center">
+                        <span class="text-xs font-bold text-stone-900 tracking-wider uppercase">SACRED MOMENTS</span>
+                    </div>
+                </div>
+                <div class="editorial-card p-3.5 slider-card rounded-sm">
+                    <div class="slider-image-container rounded-sm overflow-hidden" style="background-image: url('0N9A2311-2.jpg');"></div>
+                    <div class="pt-4 pb-1 px-1 flex justify-between items-center">
+                        <span class="text-xs font-bold text-stone-900 tracking-wider uppercase">EDITORIAL PORTRAIT</span>
+                    </div>
+                </div>
+                <div class="editorial-card p-3.5 slider-card rounded-sm">
+                    <div class="slider-image-container rounded-sm overflow-hidden" style="background-image: url('0K1A0215.jpg');"></div>
+                    <div class="pt-4 pb-1 px-1 flex justify-between items-center">
+                        <span class="text-xs font-bold text-stone-900 tracking-wider uppercase">MONOCHROME DETAIL</span>
+                    </div>
+                </div>
+                <div class="editorial-card p-3.5 slider-card rounded-sm">
+                    <div class="slider-image-container rounded-sm overflow-hidden" style="background-image: url('0K1A0348.jpg');"></div>
+                    <div class="pt-4 pb-1 px-1 flex justify-between items-center">
+                        <span class="text-xs font-bold text-stone-900 tracking-wider uppercase">UNSCRIPTED EMOTION</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY SECTION WITH STATS -->
+    <section id="about" class="relative z-10 max-w-5xl mx-auto px-8 py-28 border-t border-stone-300 text-center">
+        <p class="text-xs font-bold uppercase tracking-[0.3em] text-[#B88E3E] mb-6">PHILOSOPHY</p>
+        <h2 class="text-3xl md:text-5xl font-medium text-stone-900 leading-relaxed italic serif mb-8">
+            "Photographing quiet intimacy, natural light, and the emotional resonance of real celebration."
+        </h2>
+        <p class="text-sm font-medium text-stone-600 leading-relaxed max-w-2xl mx-auto mb-16">
+            EpiClick Photography balances quiet observation with editorial craftsmanship. Every frame is designed to capture nostalgia and authentic connection without performative posing.
+        </p>
+
+        <!-- STATS GRID -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6 border-t border-b border-stone-300 py-10 text-left">
+            <div>
+                <p class="text-3xl sm:text-4xl font-normal text-stone-900 serif">13+</p>
+                <p class="text-[11px] font-bold text-stone-500 uppercase tracking-widest mt-1">Years Experience</p>
+            </div>
+            <div>
+                <p class="text-3xl sm:text-4xl font-normal text-stone-900 serif">650+</p>
+                <p class="text-[11px] font-bold text-stone-500 uppercase tracking-widest mt-1">Weddings Captured</p>
+            </div>
+            <div>
+                <p class="text-3xl sm:text-4xl font-normal text-stone-900 serif">150+</p>
+                <p class="text-[11px] font-bold text-stone-500 uppercase tracking-widest mt-1">Other Events</p>
+            </div>
+            <div>
+                <p class="text-3xl sm:text-4xl font-normal text-stone-900 serif">100%</p>
+                <p class="text-[11px] font-bold text-stone-500 uppercase tracking-widest mt-1">Authenticity</p>
+            </div>
+            <div>
+                <p class="text-3xl sm:text-4xl font-normal text-stone-900 serif">India</p>
+                <p class="text-[11px] font-bold text-stone-500 uppercase tracking-widest mt-1">Locations</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION WITH PAYMENT SCHEDULE -->
+    <section id="services" class="relative z-10 max-w-6xl mx-auto px-8 py-28 border-t border-stone-300">
+        <div class="text-center mb-16">
+            <p class="text-xs font-bold uppercase tracking-[0.3em] text-[#B88E3E] mb-3">SERVICES</p>
+            <h2 class="text-3xl md:text-5xl font-medium text-stone-900 italic serif">Collections &amp; Coverage</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- COLLECTION 01 -->
+            <div class="bg-white p-8 border border-stone-200 rounded-sm flex flex-col justify-between min-h-[340px] shadow-sm">
+                <div>
+                    <span class="text-xs font-bold text-[#B88E3E] tracking-widest uppercase">COLLECTION</span>
+                    <h3 class="text-2xl font-normal text-stone-900 italic serif mt-3 mb-3">Wedding Celebrations</h3>
+                    <p class="text-xs font-medium text-stone-600 leading-relaxed mb-4">
+                        Full-day wedding documentation focusing on candid moments, family traditions, and ambient portraiture.
+                    </p>
+                    
+                    <!-- Payment Structure -->
+                    <div class="bg-[#FAF8F5] p-3 rounded border border-stone-200/80 text-[11px] space-y-1 text-stone-700">
+                        <p class="font-bold text-stone-900 uppercase tracking-wider text-[10px] mb-1">Payment Schedule:</p>
+                        <p>&bull; <span class="font-semibold">Booking Time:</span> 50% required</p>
+                        <p>&bull; <span class="font-semibold">Post Event:</span> 40% (Total 90%)</p>
+                        <p>&bull; <span class="font-semibold">Final Delivery:</span> Remaining 10%</p>
+                    </div>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-stone-500 border-t border-stone-200 pt-4 mt-6">FULL DAY COVERAGE</p>
+            </div>
+
+            <!-- COLLECTION 02 -->
+            <div class="bg-white p-8 border border-stone-200 rounded-sm flex flex-col justify-between min-h-[340px] shadow-sm">
+                <div>
+                    <span class="text-xs font-bold text-[#B88E3E] tracking-widest uppercase">COLLECTION</span>
+                    <h3 class="text-2xl font-normal text-stone-900 italic serif mt-3 mb-3">Intimate Elopements</h3>
+                    <p class="text-xs font-medium text-stone-600 leading-relaxed">
+                        Thoughtfully tailored for micro-weddings, vow renewals, and private celebrations in serene locations across India.
+                    </p>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-stone-500 border-t border-stone-200 pt-4 mt-6">INTIMATE FOCUS</p>
+            </div>
+
+            <!-- COLLECTION 03 -->
+            <div class="bg-white p-8 border border-stone-200 rounded-sm flex flex-col justify-between min-h-[340px] shadow-sm">
+                <div>
+                    <span class="text-xs font-bold text-[#B88E3E] tracking-widest uppercase">COLLECTION</span>
+                    <h3 class="text-2xl font-normal text-stone-900 italic serif mt-3 mb-3">Destination Editorial</h3>
+                    <p class="text-xs font-medium text-stone-600 leading-relaxed">
+                        Available across all major destination locations in India for couples seeking high-end editorial coverage.
+                    </p>
+                </div>
+                <p class="text-xs font-bold uppercase tracking-widest text-stone-500 border-t border-stone-200 pt-4 mt-6">DESTINATION COVERAGE</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLEAN DIRECT CONTACT SECTION -->
+    <section id="contact" class="relative z-10 max-w-4xl mx-auto px-8 py-28 border-t border-stone-300">
+        <div class="text-center max-w-2xl mx-auto">
+            <p class="text-xs font-bold uppercase tracking-[0.3em] text-[#B88E3E] mb-3">GET IN TOUCH</p>
+            <h2 class="text-3xl md:text-5xl font-medium text-stone-900 italic serif mb-6">Direct Inquiries</h2>
+            <p class="text-xs font-medium text-stone-600 leading-relaxed mb-12 uppercase tracking-widest">
+                Reach out directly via Email or Phone for date availability and investment details.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left bg-white p-8 border border-stone-200 shadow-sm rounded-sm">
+                <div class="space-y-1">
+                    <p class="text-stone-400 font-bold uppercase text-[10px] tracking-widest">DIRECT EMAIL</p>
+                    <a href="mailto:epiclickphotogrphy@gmail.com" class="text-stone-900 font-bold hover:text-[#B88E3E] transition-colors text-base block">
+                        epiclickphotogrphy@gmail.com
+                    </a>
+                    <p class="text-[11px] text-stone-500">For detailed proposals &amp; calendar dates</p>
+                </div>
+
+                <div class="space-y-1">
+                    <p class="text-stone-400 font-bold uppercase text-[10px] tracking-widest">PHONE &amp; WHATSAPP</p>
+                    <a href="tel:+919876543210" class="text-stone-900 font-bold hover:text-[#B88E3E] transition-colors text-base block">
+                        +91 98765 43210
+                    </a>
+                    <p class="text-[11px] text-stone-500">For quick queries &amp; direct bookings</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 border-t border-stone-300 py-12 text-center text-xs font-semibold text-stone-500 tracking-widest">
+        <p>&copy; 2026 EPICLICK PHOTOGRAPHY &bull; ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>
